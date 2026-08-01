@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.18.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm contracts:coverage
+      - run: pnpm build
+        env:
+          NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID: ci-static-build
+      - name: Validate Pages output
+        shell: bash
+        run: |
+          test -f apps/web/out/index.html
+          test -f apps/web/out/create/index.html
+          test -f apps/web/out/project/index.html
+          test -f apps/web/out/_routes.json
+      - run: git diff --check

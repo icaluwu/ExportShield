@@ -1,0 +1,21 @@
+{
+  "name": "exportshield",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.18.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "pnpm --filter @exportshield/web build",
+    "dev": "pnpm --filter @exportshield/web dev",
+    "lint": "pnpm -r --if-present lint",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test",
+    "test:e2e": "pnpm --filter @exportshield/web test:e2e",
+    "contracts:compile": "pnpm --filter @exportshield/contracts compile",
+    "contracts:test": "pnpm --filter @exportshield/contracts test",
+    "contracts:coverage": "pnpm --filter @exportshield/contracts coverage",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+  }
+}

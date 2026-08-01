@@ -1,0 +1,25 @@
+{
+  "name": "@exportshield/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat test --coverage",
+    "typecheck": "tsc --noEmit",
+    "deploy:testnet": "hardhat ignition deploy ignition/modules/ExportShield.ts --network monadTestnet"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "5.6.1"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ignition": "3.1.8",
+    "@nomicfoundation/hardhat-ignition-viem": "3.1.6",
+    "@nomicfoundation/hardhat-toolbox-viem": "5.0.7",
+    "@types/node": "26.1.2",
+    "hardhat": "3.12.0",
+    "typescript": "5.9.3",
+    "viem": "2.55.10"
+  }
+}

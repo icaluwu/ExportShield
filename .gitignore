@@ -6,7 +6,7 @@ dist/
 coverage/
 artifacts/
 cache/
-ignition/deployments/
+**/ignition/deployments/
 playwright-report/
 test-results/
 .wrangler/

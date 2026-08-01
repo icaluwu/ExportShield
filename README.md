@@ -4,6 +4,8 @@ ExportShield is an English-language hackathon MVP for milestone escrow on Monad 
 
 > Testnet only. There is no arbitration, active-project refund, or automatic release after acceptance. Funds may remain locked if the client stops responding. The contracts are not audited and must not be used with assets of economic value.
 
+Live demo: <https://exportshield.pages.dev> · [deployment evidence](DEPLOYMENT.md)
+
 ## Architecture
 
 - `apps/web`: Next.js static export plus Cloudflare Pages Functions
@@ -25,7 +27,7 @@ pnpm contracts:compile
 pnpm --filter @exportshield/web build
 ```
 
-Set a valid Reown project ID, current official Monad Testnet RPC/explorer URLs, and deployed contract addresses in `apps/web/.env.local`. For local Pages Functions create `apps/web/.dev.vars` with `MONAD_RPC_URL`, `ESCROW_CONTRACT_ADDRESS`, `SIGNATURE_DOMAIN=localhost:8788`, and `SESSION_COOKIE_SECURE=false`. Do not commit `.dev.vars`.
+The committed public defaults use the Reown `IcalUwU / Moned` project and the verified Monad Testnet deployment. Override them in `apps/web/.env.local` only when testing another deployment. For local Pages Functions create `apps/web/.dev.vars` with `MONAD_RPC_URL`, `ESCROW_CONTRACT_ADDRESS`, `SIGNATURE_DOMAIN=localhost:8788`, and `SESSION_COOKIE_SECURE=false`. Do not commit `.dev.vars`.
 
 Apply local storage and start Pages after the static build:
 
@@ -45,7 +47,7 @@ pnpm contracts:coverage
 pnpm --filter @exportshield/contracts deploy:testnet
 ```
 
-The deployment key belongs only in a local environment variable or CI secret. After deployment, verify source code on the current official Monad explorer and replace the null fields in `packages/contract-config/src/addresses/monad-testnet.json` with the address, deployment block, chain ID, and verification URL. Mirror the two public addresses into the frontend build variables and set `ESCROW_CONTRACT_ADDRESS` for Pages Functions.
+The deployment key belongs only in a local environment variable or CI secret. The current verified addresses, deployment block, chain ID, and verification URL are committed in `packages/contract-config/src/addresses/monad-testnet.json`; public release evidence is recorded in `DEPLOYMENT.md`.
 
 ## Cloudflare Pages
 

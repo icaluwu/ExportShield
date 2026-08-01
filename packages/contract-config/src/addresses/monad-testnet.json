@@ -1,7 +1,7 @@
 {
   "chainId": 10143,
-  "escrow": null,
-  "mockUsdc": null,
-  "deploymentBlock": null,
-  "verificationUrl": null
+  "escrow": "0x8C8f2534DAAFc17fd5c8a681B908D4a3D2ffb99C",
+  "mockUsdc": "0xDa61b5aE9662C1c9f783f79Dd9c400eAeeEfDD85",
+  "deploymentBlock": 49811671,
+  "verificationUrl": "https://sourcify-api-monad.blockvision.org/repo-ui/10143/0x8C8f2534DAAFc17fd5c8a681B908D4a3D2ffb99C"
 }

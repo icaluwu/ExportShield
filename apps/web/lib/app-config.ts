@@ -1,4 +1,5 @@
 import { getAddress, isAddress, type Address } from "viem";
+import { monadTestnetDeployment } from "@exportshield/contract-config";
 
 export const appConfig = {
   name: process.env.NEXT_PUBLIC_APP_NAME ?? "ExportShield",
@@ -6,7 +7,7 @@ export const appConfig = {
   rpcUrl: process.env.NEXT_PUBLIC_RPC_URL ?? "https://testnet-rpc.monad.xyz",
   explorerUrl: process.env.NEXT_PUBLIC_BLOCK_EXPLORER_URL ?? "https://testnet.monadexplorer.com",
   walletConnectProjectId:
-    process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? "exportshield-local-development",
+    process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID ?? "e4ddd96c55a3ccf57f49d3aac4e0dd59",
 };
 
 function optionalAddress(value: string | undefined): Address | null {
@@ -14,8 +15,12 @@ function optionalAddress(value: string | undefined): Address | null {
 }
 
 export const contractAddresses = {
-  escrow: optionalAddress(process.env.NEXT_PUBLIC_ESCROW_CONTRACT_ADDRESS),
-  mockUsdc: optionalAddress(process.env.NEXT_PUBLIC_MOCK_USDC_ADDRESS),
+  escrow: optionalAddress(
+    process.env.NEXT_PUBLIC_ESCROW_CONTRACT_ADDRESS ?? monadTestnetDeployment.escrow ?? undefined,
+  ),
+  mockUsdc: optionalAddress(
+    process.env.NEXT_PUBLIC_MOCK_USDC_ADDRESS ?? monadTestnetDeployment.mockUsdc ?? undefined,
+  ),
 };
 
 export const contractsConfigured = Boolean(contractAddresses.escrow && contractAddresses.mockUsdc);
